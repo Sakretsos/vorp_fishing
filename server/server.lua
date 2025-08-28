@@ -107,12 +107,8 @@ AddEventHandler('vorp_fishing:discord', function(fishModel, fishWeight, status, 
     local CharName = "Unknown Player"
     local _description = ""
 
-    if Character ~= nil then
-        if Character.lastname ~= nil then
-            CharName = Character.firstname .. ' ' .. Character.lastname
-        else
-            CharName = Character.firstname
-        end
+     if Character then
+        CharName = Character.firstname .. ' ' .. Character.lastname
     end
 
     if status == "keep" then
