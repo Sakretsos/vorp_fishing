@@ -104,7 +104,7 @@ AddEventHandler('vorp_fishing:discord', function(fishModel, fishWeight, status, 
     local avatar = Config.DiscordAvatar
     local footerlogo = Config.DiscordFooterLogo
     local color = 4777493
-    local CharName = ""
+    local CharName = "Unknown Player"
     local _description = ""
 
     if Character ~= nil then
