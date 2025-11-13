@@ -50,7 +50,7 @@ local fishs = {
     [`A_C_FISHSMALLMOUTHBASS_01_MS`] = FishData.A_C_FISHSMALLMOUTHBASS_01_MS[1],
 }
 
-AddEventHandler("vorp_fishing:resetFishing", function()
+AddEventHandler('vorp_fishing:resetFishing', function()
     fishing = false
     fishStatus = 0
     fishForce = 0.6
@@ -65,7 +65,7 @@ RegisterNetEvent('vorp_fishing:CheckBait', function(UsableBait, itemId)
     local _, weaponHash = GetCurrentPedWeapon(ped, true, 0, false)
 
     if weaponHash ~= GetHashKey("WEAPON_FISHINGROD") then
-        Core.NotifyRightTip(T.FishingRodEquipped, 4000)
+        Core.NotifyRightTip(T.NoFishingRodEquipped, 4000)
         return
     end
 
@@ -85,7 +85,7 @@ RegisterNetEvent('vorp_fishing:CheckBait', function(UsableBait, itemId)
     TriggerServerEvent('vorp_fishing:ConfirmUseBait', UsableBait, itemId)
 end)
 
-RegisterNetEvent("vorp_fishing:UseBait", function(UsableBait)
+RegisterNetEvent('vorp_fishing:UseBait', function(UsableBait)
     if fishing then return end
 
     local playerPed = PlayerPedId()
@@ -97,8 +97,6 @@ RegisterNetEvent("vorp_fishing:UseBait", function(UsableBait)
     prepareMyPrompt()
     fishing = true
     local sleep = 1500
-    currentLure = UsableBait
-    UsableBait = nil
     ready = false
 
     while fishing do
@@ -354,7 +352,7 @@ RegisterNetEvent("vorp_fishing:UseBait", function(UsableBait)
                         if isNetworked then
                             local netid = NetworkGetNetworkIdFromEntity(entity)
                             local model = GetEntityModel(entity)
-                            TriggerServerEvent("vorp_fishing:FishToInventory", netid, model, fishing_data.fish.weight, status)
+                            TriggerServerEvent('vorp_fishing:FishToInventory', netid, model, fishing_data.fish.weight, status)
 
                             SetEntityAsMissionEntity(entity, true, true)
                             Citizen.Wait(3000)
@@ -376,7 +374,7 @@ RegisterNetEvent("vorp_fishing:UseBait", function(UsableBait)
                         Citizen.InvokeNative(0x9B0C7FA063E67629, PlayerPedId(), "", 0, 1)
                         FISHING_SET_TRANSITION_FLAG(64)
                         if Config.DiscordIntegration == true then
-                            TriggerServerEvent("vorp_fishing:discord", fishModel, fishing_data.fish.weight, status, GetPlayerServerId(PlayerId()))
+                            TriggerServerEvent('vorp_fishing:discord', fishModel, fishing_data.fish.weight, status, GetPlayerServerId(PlayerId()))
                         end
                         SetEntityAsMissionEntity(entity, true, true)
                         Citizen.Wait(3000)
@@ -403,7 +401,7 @@ RegisterNetEvent("vorp_fishing:UseBait", function(UsableBait)
         -- lastState = FISHING_GET_MINIGAME_STATE()
         Wait(sleep)
     end
-    TriggerServerEvent("vorp_fishing:stopFishing")
+    TriggerServerEvent('vorp_fishing:stopFishing')
 end)
 
 CreateThread(function()
@@ -793,7 +791,7 @@ function prepareMyPrompt()
     fishing_data.prompt_finish.throw_fish = prompt
 end
 
-AddEventHandler("onResourceStop", function(resourceName)
+AddEventHandler('onResourceStop', function(resourceName)
     if resourceName == GetCurrentResourceName() then
         UiPromptDelete(fishing_data.prompt_prepare_fishing.throw_hook)
         UiPromptDelete(fishing_data.prompt_waiting_hook.hook_fish)

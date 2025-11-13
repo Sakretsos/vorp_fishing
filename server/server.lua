@@ -76,7 +76,7 @@ RegisterServerEvent('vorp_fishing:FishToInventory', function(netid, fishModel, f
 
     local canCarry = exports.vorp_inventory:canCarryItem(_source, fish.entity, 1)
     if not canCarry then
-        VORPcore.NotifyObjective(_source, "can't carry more items", 4000)
+        VORPcore.NotifyObjective(_source, T.CannotCarryMore, 4000)
         return
     end
 
