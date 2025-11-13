@@ -38,12 +38,18 @@ local playersFishing = {}
 CreateThread(function()
     for _, item in ipairs(Baits) do
         exports.vorp_inventory:registerUsableItem(item, function(data)
-            playersFishing[data.source] = true
             exports.vorp_inventory:closeInventory(data.source)
-            exports.vorp_inventory:subItemById(data.source, data.item.id)
-            TriggerClientEvent("vorp_fishing:UseBait", data.source, item)
+            TriggerClientEvent('vorp_fishing:CheckBait', data.source, item)
         end, GetCurrentResourceName())
     end
+end)
+
+RegisterNetEvent('vorp_fishing:ConfirmUseBait', function(item, itemId)
+    local _source = source
+    playersFishing[_source] = true
+
+    exports.vorp_inventory:subItemById(_source, itemId)
+    TriggerClientEvent('vorp_fishing:UseBait', _source, item)
 end)
 
 RegisterServerEvent('vorp_fishing:stopFishing', function()

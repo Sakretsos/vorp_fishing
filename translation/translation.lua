@@ -6,8 +6,11 @@ Translation.Langs = {
     PrepRod = "Prepare Fishing Rod",
     ThrowHook = "Cast Fishing Rod",
     YourGot = "You got a",
-    standNearSide = "Stand near the side of the boat when fishing",
-
+    StandNearSide = "Stand near the side of the boat when fishing",
+    --------------------------------
+    FishingRodEquipped = "You need to have your fishing rod equipped first!",
+    AlreadyHaveBait = "You already have bait on your line!",
+    ChangeBait = "You replaced your old bait with a new one.",
     --------------------------------
     Fishing = "Fishing",
     HookFish = "Hook",
@@ -33,6 +36,11 @@ Translation.Langs = {
     PrepRod = "Preparar a cana de pesca",
     ThrowHook = "Lancar o anzol",
     YourGot = "You got a",
+    StandNearSide = "Stand near the side of the boat when fishing",
+    --------------------------------
+    FishingRodEquipped = "You need to have your fishing rod equipped first!",
+    AlreadyHaveBait = "You already have bait on your line!",
+    ChangeBait = "You replaced your old bait with a new one.",
     --------------------------------
     Fishing = "A pescar",
     HookFish = "Mexer o anzol",
@@ -58,7 +66,11 @@ Translation.Langs = {
     PrepRod = "Prepare a Vara de Pesca",
     ThrowHook = "Lance a Vara de Pesca",
     YourGot = "Você pegou um",
-    standNearSide = "Fique perto do lado do barco ao pescar",
+    StandNearSide = "Stand near the side of the boat when fishing",
+    --------------------------------
+    FishingRodEquipped = "You need to have your fishing rod equipped first!",
+    AlreadyHaveBait = "You already have bait on your line!",
+    ChangeBait = "You replaced your old bait with a new one.",
     --------------------------------
     Fishing = "Pescaria",
     HookFish = "Fisgar",
@@ -84,7 +96,11 @@ Translation.Langs = {
     PrepRod = "Prepara la Caña de Pescar",
     ThrowHook = "Lanza el Anzuelo",
     YourGot = "You got a",
-    standNearSide = "Ponte cerca del lado del barco al pescar",
+    StandNearSide = "Stand near the side of the boat when fishing",
+    --------------------------------
+    FishingRodEquipped = "You need to have your fishing rod equipped first!",
+    AlreadyHaveBait = "You already have bait on your line!",
+    ChangeBait = "You replaced your old bait with a new one.",
     --------------------------------
     Fishing = "Pescando",
     HookFish = "Anzuelo",
@@ -110,7 +126,11 @@ Translation.Langs = {
     PrepRod = "Angelrute vorbereiten",
     ThrowHook = "Angelrute auswerfen",
     YourGot = "You got a",
-    standNearSide = "Stehe nahe am Rand des Bootes beim Angeln",
+    StandNearSide = "Stand near the side of the boat when fishing",
+    --------------------------------
+    FishingRodEquipped = "You need to have your fishing rod equipped first!",
+    AlreadyHaveBait = "You already have bait on your line!",
+    ChangeBait = "You replaced your old bait with a new one.",
     --------------------------------
     Fishing = "Angeln",
     HookFish = "Haken",
