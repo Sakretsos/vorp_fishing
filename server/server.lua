@@ -48,8 +48,8 @@ CreateThread(function()
             if not result[1] then
                 return
             else
-                exports.vorp_inventory:subItemById(_source, data.item.id)
-                TriggerClientEvent("vorp_fishing:UseBait", _source, item)
+                exports.vorp_inventory:subItem(_source, result[2], 1)
+                TriggerClientEvent("vorp_fishing:UseBait", _source, result[2])
             end
 
         end, GetCurrentResourceName())
