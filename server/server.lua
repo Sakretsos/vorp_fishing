@@ -38,27 +38,31 @@ local playersFishing = {}
 CreateThread(function()
     for _, item in ipairs(Baits) do
         exports.vorp_inventory:registerUsableItem(item, function(data)
-            exports.vorp_inventory:closeInventory(data.source)
-            TriggerClientEvent('vorp_fishing:CheckBait', data.source, item)
+            local _source = data.source
+            
+            playersFishing[_source] = true
+            exports.vorp_inventory:closeInventory(_source)
+
+            local result <const> = VORPcore.Callback.TriggerAwait("vorp_fishing:checkRodAndBait", _source, item)
+
+            if not result[1] then
+                return
+            else
+                exports.vorp_inventory:subItemById(_source, data.item.id)
+                TriggerClientEvent("vorp_fishing:UseBait", _source, item)
+            end
+
         end, GetCurrentResourceName())
     end
 end)
 
-RegisterNetEvent('vorp_fishing:ConfirmUseBait', function(item, itemId)
-    local _source = source
-    playersFishing[_source] = true
-
-    exports.vorp_inventory:subItemById(_source, itemId)
-    TriggerClientEvent('vorp_fishing:UseBait', _source, item)
-end)
-
-RegisterServerEvent('vorp_fishing:stopFishing', function()
+RegisterServerEvent("vorp_fishing:stopFishing", function()
     if playersFishing[source] then
         playersFishing[source] = nil
     end
 end)
 
-RegisterServerEvent('vorp_fishing:FishToInventory', function(netid, fishModel, fishWeight, status)
+RegisterServerEvent("vorp_fishing:FishToInventory", function(netid, fishModel, fishWeight, status)
     local _source = source
     if not playersFishing[_source] then
         return print("Player is not fishing and tried to give item to inventory", GetPlayerName(_source))
@@ -81,7 +85,7 @@ RegisterServerEvent('vorp_fishing:FishToInventory', function(netid, fishModel, f
     end
 
     if Config.DiscordIntegration then
-        TriggerEvent('vorp_fishing:discord', fishModel, fishWeight, status, _source)
+        TriggerEvent("vorp_fishing:discord", fishModel, fishWeight, status, _source)
     end
 
     exports.vorp_inventory:addItem(_source, fish.entity, 1)
